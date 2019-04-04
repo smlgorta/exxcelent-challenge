@@ -40,4 +40,14 @@ public class AppTest {
         assertEquals(dataPoints.get(0), dataObject.getDataPoint("a"));
     }
 
+    @Test
+    public void spreadTest(){
+        List<String> dataPoints = Arrays.asList("2.5", "3.4");
+        List<String> dataNames = Arrays.asList("a", "b");
+        DataObject dataObject = new DataObject(dataPoints, dataNames);
+        assertEquals(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1)),
+                DataObjectStrategy.Spread.apply(dataObject, Arrays.asList("a", "b")));
+    }
+
+
 }

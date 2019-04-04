@@ -1,5 +1,8 @@
 package de.exxcellent.challenge;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
  * design. Read: create your own classes and packages as appropriate.
@@ -15,8 +18,9 @@ public final class App {
     public static void main(String... args) {
 
         // Your preparation code …
-        //DataReader dataReader = new DataReader("resources/de.exxcelent.challenge/weather.csv");
-        //List<Day> days = dataReader.getData().stream(p -> new Day(p.getDoubleDataPoint(0), p)).;
+        DataReader dataReader = new CsvDataReader();
+        List<DataObject> dataObjects = dataReader.getData("../../resources/de.exxcelent.challenge/weather.csv");
+        List<Day> days = dataObjects.stream().map(p -> new Day(Integer.parseInt(p.getDataPoint("Day")), p)).collect(Collectors.toList());
 
         String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
