@@ -15,6 +15,8 @@ public final class App {
     public static void main(String... args) {
 
         // Your preparation code …
+        //DataReader dataReader = new DataReader("resources/de.exxcelent.challenge/weather.csv");
+        //List<Day> days = dataReader.getData().stream(p -> new Day(p.getDoubleDataPoint(0), p)).;
 
         String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);

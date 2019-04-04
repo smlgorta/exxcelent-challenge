@@ -3,6 +3,9 @@ package de.exxcellent.challenge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -26,6 +29,15 @@ public class AppTest {
     @Test
     public void runFootball() {
         App.main("--football", "football.csv");
+    }
+
+
+    @Test
+    public void getDataGivenNameTest(){
+        List<String> dataPoints = Arrays.asList("2.5", "3.4", "5.6", "0.0");
+        List<String> dataNames = Arrays.asList("a", "b", "c", "d");
+        DataObject dataObject = new DataObject(dataPoints, dataNames);
+        assertEquals(dataPoints.get(0), dataObject.getDataPoint("a"));
     }
 
 }
