@@ -16,5 +16,6 @@ public class DataObjectStrategy{
                     .map(p -> Double.parseDouble(p)).collect(Collectors.toList());
             return parameters.get(0) - parameters.get(1);
         }
+
     }
 }

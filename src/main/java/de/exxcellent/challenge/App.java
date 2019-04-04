@@ -1,5 +1,8 @@
 package de.exxcellent.challenge;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,12 +20,16 @@ public final class App {
      */
     public static void main(String... args) {
 
+
         // Your preparation code …
         DataReader dataReader = new CsvDataReader();
-        List<DataObject> dataObjects = dataReader.getData("../../resources/de.exxcelent.challenge/weather.csv");
+        List<DataObject> dataObjects = dataReader.getData("src/main/resources/de/exxcellent/challenge/weather.csv");
         List<Day> days = dataObjects.stream().map(p -> new Day(Integer.parseInt(p.getDataPoint("Day")), p)).collect(Collectors.toList());
 
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
+        String dayWithSmallestTempSpread = days.stream()
+                                            .min(Comparator.comparing(p -> DataObjectStrategy.Spread.apply(p.getDataObject(), Arrays.asList("MxT", "MnT"))))
+                                            .get().getDayNumber() + "";
+
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
         String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …

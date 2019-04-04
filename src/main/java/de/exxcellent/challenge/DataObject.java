@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class DataObject {
@@ -26,6 +27,14 @@ public final class DataObject {
             idx++;
         }
         return "";
+    }
+
+    public List<String> getDataPoints(){
+        return new ArrayList<>(dataPoints);
+    }
+
+    public List<String> getDataNames(){
+        return new ArrayList<>(dataNames);
     }
 
 }

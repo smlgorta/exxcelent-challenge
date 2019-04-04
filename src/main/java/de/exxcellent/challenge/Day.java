@@ -9,4 +9,12 @@ public class Day{
         this.dayNumber = dayNumber;
         this.dataObject = dataObject;
     }
+
+    public DataObject getDataObject() {
+        return new DataObject(dataObject.getDataPoints(), dataObject.getDataNames());
+    }
+
+    public int getDayNumber(){
+        return dayNumber;
+    }
 }
