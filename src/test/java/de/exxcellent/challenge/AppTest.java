@@ -1,8 +1,13 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.dataobjects.DataObject;
+import de.exxcellent.challenge.dataobjects.Day;
+import de.exxcellent.challenge.strategy.Identity;
+import de.exxcellent.challenge.strategy.Spread;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,8 +51,41 @@ public class AppTest {
         List<String> dataNames = Arrays.asList("a", "b");
         DataObject dataObject = new DataObject(dataPoints, dataNames);
         assertEquals(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1)),
-                DataObjectStrategy.Spread.apply(dataObject, Arrays.asList("a", "b")));
+                Spread.INSTANCE.apply(dataObject, Arrays.asList("a", "b")));
     }
 
+    @Test
+    public void spreadTestNegativeValues(){
+        List<String> dataPoints = Arrays.asList("-2.5", "3.4");
+        List<String> dataNames = Arrays.asList("a", "b");
+        DataObject dataObject = new DataObject(dataPoints, dataNames);
+        assertEquals(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1)),
+                Spread.INSTANCE.apply(dataObject, Arrays.asList("a", "b")));
+    }
+
+
+    @Test
+    public void findObjectWithMinTest(){
+        List<Day> days = new ArrayList<>();
+
+        List<String> dataPoints = Arrays.asList("2.5", "-3.4");
+        List<String> dataNames = Arrays.asList("a", "b");
+        DataObject dataObject = new DataObject(dataPoints, dataNames);
+        days.add(new Day(0, dataObject));
+
+        dataPoints = Arrays.asList("-2.5", "3.4");
+        dataNames = Arrays.asList("a", "b");
+        dataObject = new DataObject(dataPoints, dataNames);
+        days.add(new Day(1, dataObject));
+
+        dataPoints = Arrays.asList("8", "3.4");
+        dataNames = Arrays.asList("a", "b");
+        dataObject = new DataObject(dataPoints, dataNames);
+        days.add(new Day(2, dataObject));
+
+        assertEquals(days.get(1), ObjectsStats.findObjectWithMinValue(days, Arrays.asList("a"), Identity.INSTANCE, Day.class));
+        assertEquals(days.get(0), ObjectsStats.findObjectWithMinValue(days, Arrays.asList("b"), Identity.INSTANCE, Day.class));
+
+    }
 
 }
