@@ -1,6 +1,6 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.dataobjects;
 
-public interface DataObjectInterface {
+public interface ObjectWithData {
 
     DataObject getDataObject();
 }

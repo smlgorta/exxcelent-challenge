@@ -1,4 +1,6 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.read;
+
+import de.exxcellent.challenge.dataobjects.DataObject;
 
 import java.util.List;
 

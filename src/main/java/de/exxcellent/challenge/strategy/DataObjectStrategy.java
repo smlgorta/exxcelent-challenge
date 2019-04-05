@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.strategy;
 
 import de.exxcellent.challenge.dataobjects.DataObject;
 

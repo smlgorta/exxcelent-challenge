@@ -1,6 +1,6 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.dataobjects;
 
-public class Day implements DataObjectInterface{
+public class Day implements ObjectWithData {
 
     private int dayNumber;
     private DataObject dataObject;

@@ -1,4 +1,6 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.read;
+
+import de.exxcellent.challenge.dataobjects.DataObject;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
