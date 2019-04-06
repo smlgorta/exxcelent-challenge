@@ -2,6 +2,7 @@ package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.dataobjects.DataObject;
 import de.exxcellent.challenge.dataobjects.Day;
+import de.exxcellent.challenge.strategy.AbsoluteSpread;
 import de.exxcellent.challenge.strategy.Identity;
 import de.exxcellent.challenge.strategy.Spread;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,6 +53,18 @@ public class AppTest {
         DataObject dataObject = new DataObject(dataPoints, dataNames);
         assertEquals(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1)),
                 Spread.INSTANCE.apply(dataObject, Arrays.asList("a", "b")));
+    }
+
+    @Test
+    public void absoluteSpreadTest(){
+        List<String> dataPoints = Arrays.asList("-2.5", "3.4");
+        List<String> dataNames = Arrays.asList("a", "b");
+        DataObject dataObject = new DataObject(dataPoints, dataNames);
+        assertEquals(Math.abs(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1))),
+                AbsoluteSpread.INSTANCE.apply(dataObject, Arrays.asList("a", "b")));
+        assertEquals(Math.abs(Double.parseDouble(dataPoints.get(0)) - Double.parseDouble(dataPoints.get(1))),
+                AbsoluteSpread.INSTANCE.apply(dataObject, Arrays.asList("b", "a")));
+
     }
 
     @Test

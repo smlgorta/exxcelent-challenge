@@ -33,12 +33,16 @@ public final class App {
         DataReader dataReader = new CsvDataReader();
 
         List<DataObject> dataObjects = dataReader.getData("src/main/resources/de/exxcellent/challenge/weather.csv");
-        List<Day> days = dataObjects.stream().map(p -> new Day(Integer.parseInt(p.getDataPoint("Day")), p)).collect(Collectors.toList());
+        List<Day> days = dataObjects.stream()
+                .map(p -> new Day(Integer.parseInt(p.getDataPoint("Day")), p))
+                .collect(Collectors.toList());
         String dayWithSmallestTempSpread = ObjectsStats.findObjectWithMinValue(days, Arrays.asList("MxT", "MnT"), Spread.INSTANCE, Day.class).getDayNumber() + "";
 
 
         dataObjects = dataReader.getData("src/main/resources/de/exxcellent/challenge/football.csv");
-        List<TeamStats> teams = dataObjects.stream().map(p -> new TeamStats(p.getDataPoint("Team"), p)).collect(Collectors.toList());
+        List<TeamStats> teams = dataObjects.stream()
+                .map(p -> new TeamStats(p.getDataPoint("Team"), p))
+                .collect(Collectors.toList());
         String teamWithSmallestGoalSpread = ObjectsStats.findObjectWithMinValue(teams, Arrays.asList("Goals", "Goals Allowed"), AbsoluteSpread.INSTANCE, TeamStats.class).getName() + "";
 
 
